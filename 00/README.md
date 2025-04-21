@@ -4,7 +4,7 @@
 ![DuckDB](https://img.shields.io/badge/Database-DuckDB-orange)
 ![Python](https://img.shields.io/badge/Language-Python%203-green)
 
-Um pipeline ETL completo implementando uma arquitetura moderna de **Data Lakehouse** com camadas Bronze, Silver e Gold, utilizando Python e DuckDB como mecanismo de armazenamento.
+Um pipeline ETL completo implementando uma arquitetura moderna de **Data Lakehouse** com camadas Bronze, Silver e Gold, utilizando Python e DuckDB como mecanismo de processamento e armazenamento.
 
 ## 📋 Descrição do Projeto
 
