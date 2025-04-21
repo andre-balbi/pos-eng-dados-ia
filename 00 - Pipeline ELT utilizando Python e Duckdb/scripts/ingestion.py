@@ -13,6 +13,7 @@ from datetime import datetime
 import pandas as pd
 import duckdb
 import logging
+import time
 
 # Configuração de logging para acompanhamento do processo
 logging.basicConfig(
@@ -25,6 +26,10 @@ logger = logging.getLogger()
 LANDING_DIR = '../landing'
 DB_FILE = 'dados_duckdb.db'
 EXT = '.csv'
+
+# Inicia a medição do tempo
+start_time = time.time()
+logger.info("Iniciando medição do tempo de execução do pipeline")
 
 # ------------------------------------------------------------
 # Camada Bronze - Ingestão de dados brutos
@@ -274,5 +279,10 @@ exibir_amostra(TABLE_NAME_DIM, "CAMADA GOLD - Tabela Dimensão (Categorias e For
 
 # Fecha a conexão com o banco de dados
 con.close()
-
 logger.info("Conexão com o banco encerrada")
+
+# Calcula e exibe o tempo total de execução
+end_time = time.time()
+execution_time = end_time - start_time
+
+logger.info(f"Tempo total de execução do pipeline: {execution_time:.2f} segundos")

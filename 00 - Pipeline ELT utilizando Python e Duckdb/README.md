@@ -1,4 +1,4 @@
-# 🌊 Pipeline ETL Simulando Data Lakehouse
+# 🌊 Pipeline ELT utilizando Python e Duckdb
 
 ![Data Lakehouse Architecture](https://img.shields.io/badge/Architecture-Data%20Lakehouse-blue)
 ![DuckDB](https://img.shields.io/badge/Database-DuckDB-orange)
@@ -15,7 +15,7 @@ As camadas são estruturadas para proporcionar uma experiência de gerenciamento
 ### 🏗️ Arquitetura
 
 ```
-CSV Files → [BRONZE] → [SILVER] → [GOLD (Fact/Dimension Tables)]
+[CSV Files (landing)] → [BRONZE] → [SILVER] → [GOLD (Fact/Dimension Tables)]
 ```
 
 - **Camada Bronze**: Ingestão de dados brutos
@@ -43,19 +43,27 @@ CSV Files → [BRONZE] → [SILVER] → [GOLD (Fact/Dimension Tables)]
 Abaixo está um exemplo da saída do pipeline quando executado com dois arquivos CSV contendo dados de produtos:
 
 ```
-2025-04-21 18:41:13,210 - INFO - Iniciando processo ETL - Camada Bronze
-2025-04-21 18:41:13,211 - INFO - Conexão estabelecida com o banco dados_duckdb.db
-2025-04-21 18:41:13,658 - INFO - Encontrados 2 arquivos para processamento
-2025-04-21 18:41:13,893 - INFO - Arquivo z0019_1.csv processado com sucesso: 10 registros
-2025-04-21 18:41:14,129 - INFO - Arquivo z0019_2.csv processado com sucesso: 50 registros
-2025-04-21 18:41:14,130 - INFO - Total de registros na camada Bronze: 60
-2025-04-21 18:41:14,131 - INFO - Iniciando processo ETL - Camada Silver
-2025-04-21 18:41:14,137 - INFO - Dados extraídos para camada Silver: 10 registros únicos
-2025-04-21 18:41:14,837 - INFO - Dados inseridos na camada Silver com sucesso
-2025-04-21 18:41:14,837 - INFO - Iniciando processo ETL - Camada Gold
-2025-04-21 18:41:15,565 - INFO - Tabela fato criada com 10 registros
-2025-04-21 18:41:16,356 - INFO - Tabela dimensão criada com 10 registros
-2025-04-21 18:41:16,358 - INFO - Pipeline ETL concluído com sucesso
+2025-04-21 19:24:15,537 - INFO - Iniciando medição do tempo de execução do pipeline
+2025-04-21 19:24:15,538 - INFO - Iniciando processo ETL - Camada Bronze
+2025-04-21 19:24:15,561 - INFO - Conexão estabelecida com o banco dados_duckdb.db
+2025-04-21 19:24:16,322 - INFO - Encontrados 2 arquivos para processamento
+2025-04-21 19:24:16,372 - INFO - Arquivo z0019_1.csv processado com sucesso: 10 registros
+2025-04-21 19:24:16,407 - INFO - Arquivo z0019_2.csv processado com sucesso: 50 registros
+2025-04-21 19:24:16,408 - INFO - Total de registros na camada Bronze: 60
+2025-04-21 19:24:16,409 - INFO - Iniciando processo ETL - Camada Silver
+2025-04-21 19:24:16,416 - INFO - Dados extraídos para camada Silver: 10 registros únicos
+2025-04-21 19:24:16,492 - INFO - Dados inseridos na camada Silver com sucesso
+2025-04-21 19:24:16,493 - INFO - Iniciando processo ETL - Camada Gold
+2025-04-21 19:24:16,577 - INFO - Tabela fato criada com 10 registros
+2025-04-21 19:24:16,673 - INFO - Tabela dimensão criada com 10 registros
+2025-04-21 19:24:16,674 - INFO - Pipeline ETL concluído com sucesso
+2025-04-21 19:24:16,674 - INFO - Estatísticas finais:
+2025-04-21 19:24:16,677 - INFO - - Registros na camada Bronze: 60
+2025-04-21 19:24:16,677 - INFO - - Registros na camada Silver: 10
+2025-04-21 19:24:16,678 - INFO - - Registros na tabela Fato: 10
+2025-04-21 19:24:16,678 - INFO - - Registros na tabela Dimensão: 10
+2025-04-21 19:24:16,829 - INFO - Conexão com o banco encerrada
+2025-04-21 19:24:16,829 - INFO - Tempo total de execução do pipeline: 1.29 segundos
 ```
 
 ### Tabelas Resultantes
@@ -120,6 +128,6 @@ Total de registros: 10
 - O pipeline demonstrou eficácia na ingestão e processamento de dados brutos
 - A deduplicação foi bem-sucedida, reduzindo 60 registros brutos para 10 registros únicos na camada Silver
 - A modelagem dimensional separa corretamente os dados de produtos e suas categorias/fornecedores
-- O desempenho mostra-se adequado com processamento completo em apenas 3 segundos
+- O desempenho mostra-se adequado com processamento completo em apenas ~1.3 segundos
 
 ---
