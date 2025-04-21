@@ -2,9 +2,9 @@
 Data Lakehouse ETL Process - Bronze, Silver e Gold
 
 Este script implementa um pipeline ETL de três camadas para processamento de dados de produtos,
-utilizando DuckDB como mecanismo de armazenamento.
+utilizando DuckDB como mecanismo de processamento e armazenamento.
 
-Autor: [Seu Nome]
+Autor: André Balbi
 Data: Abril 2025
 """
 
